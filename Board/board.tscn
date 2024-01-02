@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvcell5xd1wx"]
+
+[ext_resource type="PackedScene" uid="uid://xm6ph7h8lj80" path="res://Ball/ball.tscn" id="1_alh3p"]
+[ext_resource type="Script" path="res://Board/board.gd" id="1_u4jjo"]
+[ext_resource type="Script" path="res://Paddle/paddle.gd" id="3_5vat3"]
+[ext_resource type="Texture2D" uid="uid://l04b5dgiwuic" path="res://Paddle/funny_cat_pong.png" id="4_6mfai"]
+[ext_resource type="PackedScene" uid="uid://yl1dnpdm4bcp" path="res://Walls/walls.tscn" id="4_nbwl3"]
+[ext_resource type="PackedScene" uid="uid://bukr72mj2m5pe" path="res://Paddle/enemy_paddle.tscn" id="5_qpcii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6mr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3o5t3"]
+size = Vector2(20, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01npp"]
+size = Vector2(20, 57)
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_u4jjo")
+
+[node name="Ball" parent="." instance=ExtResource("1_alh3p")]
+position = Vector2(290, 284)
+scale = Vector2(0.63, 0.63)
+
+[node name="Paddle" type="CharacterBody2D" parent="." groups=["Player"]]
+position = Vector2(56, 286)
+script = ExtResource("3_5vat3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paddle"]
+position = Vector2(-21, -4)
+rotation = 4.71239
+scale = Vector2(1.105, 1.105)
+texture = ExtResource("4_6mfai")
+
+[node name="Middle" type="CollisionShape2D" parent="Paddle" groups=["PlayerMiddle"]]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_o6mr8")
+
+[node name="Lower" type="CollisionShape2D" parent="Paddle" groups=["PlayerLower"]]
+position = Vector2(0, 36)
+shape = SubResource("RectangleShape2D_3o5t3")
+
+[node name="Upper" type="CollisionShape2D" parent="Paddle" groups=["PlayerUpper"]]
+position = Vector2(0, -45)
+shape = SubResource("RectangleShape2D_01npp")
+
+[node name="Walls" parent="." instance=ExtResource("4_nbwl3")]
+position = Vector2(23, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 322)
+
+[node name="EnemyPaddle" parent="." instance=ExtResource("5_qpcii")]
+position = Vector2(1105, 289)

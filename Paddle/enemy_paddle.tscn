@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bukr72mj2m5pe"]
+
+[ext_resource type="Script" path="res://Paddle/enemy_paddle.gd" id="1_ehkvi"]
+[ext_resource type="Texture2D" uid="uid://bf6pon6t6ng2h" path="res://Paddle/funny_Bcat_pong.png" id="1_ki8an"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wpa8"]
+size = Vector2(21, 152)
+
+[node name="EnemyPaddle" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_ehkvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2wpa8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(19, -0.500004)
+rotation = 1.5708
+scale = Vector2(1.14961, 1)
+texture = ExtResource("1_ki8an")
